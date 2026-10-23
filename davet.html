@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Davet · YKS Üssü</title><meta name="robots" content="noindex">
+<style>body{margin:0;background:#F6F7FB;color:#161A2E;font:16px/1.6 system-ui,sans-serif}main{max-width:520px;margin:0 auto;padding:32px 18px}
+.logo{font-weight:900;font-size:28px;color:#1E2A78}.logo sup{color:#F5A524;font-size:14px}.kart{background:#fff;border:1px solid #E3E6EF;border-radius:16px;padding:20px;margin:18px 0}
+.dugme{display:block;text-align:center;background:#1E2A78;color:#fff;padding:14px;border-radius:12px;text-decoration:none;font-weight:700;margin:10px 0}.ikinci{background:#fff;color:#1E2A78;border:2px solid #1E2A78}small{color:#5B6275}</style></head>
+<body><main><div class="logo">YKS<sup>Üssü</sup></div>
+<div class="kart"><h1 style="font-size:22px;margin:0 0 8px">Bir arkadaşın seni davet etti</h1>
+<p>Bu bağlantı <b>tek kullanımlıktır</b>. Uygulamada açtığında Premium sana aylık 150 TL olur (normali 200 TL).</p>
+<a class="dugme" id="ac" href="#">YKS Üssü'nde aç</a>
+<a class="dugme ikinci" href="https://play.google.com/store/apps/details?id=com.yksussu.app">Uygulamayı indir</a>
+<small>Uygulamayı yeni indirdiysen kurulumdan sonra bu sayfaya dönüp "YKS Üssü'nde aç" düğmesine bir kez daha dokun.</small></div></main>
+<script>
+const k = (new URLSearchParams(location.search).get('k') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 10);
+const a = document.getElementById('ac');
+if (k.length === 10) {
+  a.href = 'intent://davet/' + k + '#Intent;scheme=yksussu;package=com.yksussu.app;S.browser_fallback_url=' + encodeURIComponent('https://play.google.com/store/apps/details?id=com.yksussu.app') + ';end';
+  if (/Android/i.test(navigator.userAgent)) setTimeout(() => { location.href = a.href; }, 300);
+} else { a.style.display = 'none'; document.querySelector('h1').textContent = 'Davet bağlantısı eksik'; }
+</script></body></html>
